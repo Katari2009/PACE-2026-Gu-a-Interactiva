@@ -21,7 +21,8 @@ import {
   Users,
   Trophy,
   FileText,
-  MousePointerClick
+  MousePointerClick,
+  ExternalLink
 } from "lucide-react";
 
 // --- Components ---
@@ -497,17 +498,49 @@ const slides = [
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-8 md:gap-12 items-center">
           <div className="space-y-4 md:space-y-6">
             {[
-              { title: "La Ventana de Acción", desc: "Se completa online en octubre (www.beneficiosestudiantiles.cl).", color: "text-teal-500" },
-              { title: "El Requisito Vital", desc: "Debes tener tu Registro Social de Hogares (RSH) actualizado. Migrantes requieren residencia definitiva.", color: "text-blue-600" },
-              { title: "El Botín", desc: "Llenar este único formulario te postula simultáneamente a Gratuidad, Becas y Créditos del Estado.", color: "text-amber-500" },
-              { title: "La Data", desc: "Te pedirá antecedentes académicos, personales y los ingresos de tu grupo familiar.", color: "text-blue-600" }
+              { 
+                title: "La Ventana de Acción", 
+                desc: "Se completa online en octubre.", 
+                link: "www.beneficiosestudiantiles.cl",
+                url: "https://www.beneficiosestudiantiles.cl",
+                color: "text-teal-500" 
+              },
+              { 
+                title: "El Requisito Vital", 
+                desc: "Debes tener tu RSH actualizado.", 
+                link: "Registro Social de Hogares",
+                url: "https://www.registrosocial.gob.cl/",
+                color: "text-blue-600" 
+              },
+              { 
+                title: "El Botín", 
+                desc: "Postula a Gratuidad, Becas y Créditos.", 
+                link: "Ver beneficios",
+                url: "https://www.beneficiosestudiantiles.cl/becas-y-beneficios",
+                color: "text-amber-500" 
+              },
+              { 
+                title: "La Data", 
+                desc: "Antecedentes académicos y familiares.", 
+                link: "Guía de llenado",
+                url: "https://portal.beneficiosestudiantiles.cl/guia-paso-paso-fuas",
+                color: "text-blue-600" 
+              }
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div className="flex gap-3 md:gap-4 group">
                   <div className={`mt-1 shrink-0 ${item.color}`}><CheckCircle2 size={24} className="md:w-7 md:h-7" /></div>
                   <div>
                     <h3 className="text-xl md:text-2xl font-black italic leading-none mb-2">{item.title}</h3>
-                    <p className="text-base md:text-lg font-bold text-text-secondary leading-snug">{item.desc}</p>
+                    <p className="text-base md:text-lg font-bold text-text-secondary leading-snug mb-1">{item.desc}</p>
+                    <a 
+                      href={item.url} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-xs font-black text-blue-600 hover:underline flex items-center gap-1"
+                    >
+                      {item.link} <ExternalLink size={10} />
+                    </a>
                   </div>
                 </div>
               </Reveal>
@@ -516,9 +549,16 @@ const slides = [
           <Reveal delay={0.5}>
             <div className="card p-6 md:p-8 bg-black text-white border-none shadow-2xl relative overflow-hidden scale-90 md:scale-100">
               <div className="absolute top-0 left-0 w-full h-1 bg-teal-500" />
-              <div className="flex items-center gap-4 mb-6 md:mb-8">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-xl flex items-center justify-center"><MousePointerClick size={20} className="md:w-6 md:h-6" /></div>
-                <div className="font-mono text-[10px] md:text-xs opacity-50">www.beneficiosestudiantiles.cl/FUAS</div>
+              <div className="flex items-center justify-between mb-6 md:mb-8">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-white/10 rounded-xl flex items-center justify-center"><MousePointerClick size={20} className="md:w-6 md:h-6" /></div>
+                  <div className="font-mono text-[10px] md:text-xs opacity-50">www.beneficiosestudiantiles.cl/FUAS</div>
+                </div>
+                <div className="flex gap-1">
+                  <div className="w-2 h-2 rounded-full bg-red-500" />
+                  <div className="w-2 h-2 rounded-full bg-amber-500" />
+                  <div className="w-2 h-2 rounded-full bg-green-500" />
+                </div>
               </div>
               <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
                 <div className="h-8 md:h-10 bg-white/5 rounded-lg w-full" />
@@ -532,7 +572,14 @@ const slides = [
                   </div>
                   <span className="text-[8px] md:text-[10px] font-bold text-teal-500">75% Completado</span>
                 </div>
-                <div className="px-4 md:px-6 py-1.5 md:py-2 bg-teal-500 text-black font-black text-xs md:text-sm rounded-lg">Enviar</div>
+                <a 
+                  href="https://www.beneficiosestudiantiles.cl" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="px-4 md:px-6 py-1.5 md:py-2 bg-teal-500 text-black font-black text-xs md:text-sm rounded-lg hover:bg-teal-400 transition-colors"
+                >
+                  Enviar
+                </a>
               </div>
             </div>
           </Reveal>
@@ -625,22 +672,65 @@ const slides = [
         </Reveal>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {[
-            { title: "Mifuturo.cl", desc: "Empleabilidad y sueldos", icon: <BarChart3 />, color: "text-black" },
-            { title: "Portal DEMRE", desc: "Todo lo oficial de la PAES", icon: <FileText />, color: "text-red-600" },
-            { title: "Simulador Ponderado", desc: "Proyecta tu futuro", icon: <Zap />, color: "text-blue-600" },
-            { title: "Simulador Ranking", desc: "Calcula tu posición", icon: <Target />, color: "text-teal-500" }
+            { 
+              title: "Mifuturo.cl", 
+              desc: "Empleabilidad y sueldos", 
+              url: "https://www.mifuturo.cl",
+              color: "text-black",
+              borderColor: "border-black",
+              btnColor: "bg-black"
+            },
+            { 
+              title: "Portal DEMRE", 
+              desc: "Información oficial PAES", 
+              url: "https://demre.cl",
+              color: "text-red-600",
+              borderColor: "border-red-600",
+              btnColor: "bg-red-600"
+            },
+            { 
+              title: "Simulador Ponderado", 
+              desc: "Proyecta tu futuro", 
+              url: "https://pj.demre.cl/",
+              color: "text-blue-600",
+              borderColor: "border-blue-600",
+              btnColor: "bg-blue-600"
+            },
+            { 
+              title: "Simulador Ranking", 
+              desc: "Calcula tu posición", 
+              url: "https://pj.demre.cl/",
+              color: "text-teal-500",
+              borderColor: "border-teal-500",
+              btnColor: "bg-teal-500"
+            }
           ].map((item, i) => (
             <Reveal key={i} delay={i * 0.1}>
-              <div className="card p-4 md:p-6 text-center group bg-white hover:scale-105 transition-transform">
-                <div className={`w-full aspect-square bg-gray-100 rounded-xl mb-3 md:mb-4 flex items-center justify-center ${item.color}`}>
-                  <QrCode size={60} className="md:w-20 md:h-20" strokeWidth={1} />
+              <a 
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`card p-4 md:p-6 text-center group bg-white hover:shadow-2xl transition-all block h-full border-t-4 ${item.borderColor} relative overflow-hidden`}
+              >
+                <div className={`w-full aspect-square bg-gray-50 rounded-xl mb-3 md:mb-4 flex items-center justify-center ${item.color} group-hover:bg-white transition-colors`}>
+                  <QrCode size={60} className="md:w-20 md:h-20" strokeWidth={1.5} />
                 </div>
                 <h3 className="font-black italic text-sm md:text-lg leading-tight mb-1">{item.title}</h3>
-                <p className="text-[10px] md:text-xs font-bold text-text-muted">{item.desc}</p>
-              </div>
+                <p className="text-[10px] md:text-xs font-bold text-text-muted mb-4">{item.desc}</p>
+                <div className={`mt-auto py-2 px-3 rounded-lg text-white text-[10px] md:text-xs font-black uppercase tracking-wider ${item.btnColor} opacity-0 group-hover:opacity-100 transition-opacity`}>
+                  Visitar Sitio
+                </div>
+              </a>
             </Reveal>
           ))}
         </div>
+        <Reveal delay={0.5}>
+          <div className="mt-8 md:mt-12 p-4 md:p-6 bg-blue-50 rounded-2xl border border-blue-100">
+            <p className="text-sm md:text-base text-blue-800 font-medium text-center">
+              💡 <strong>Consejo Pro:</strong> Usa estas herramientas para tomar decisiones basadas en datos reales, no en suposiciones.
+            </p>
+          </div>
+        </Reveal>
       </div>
     )
   },
