@@ -691,7 +691,7 @@ const slides = [
             { 
               title: "Simulador Ponderado", 
               desc: "Proyecta tu futuro", 
-              url: "https://pj.demre.cl/",
+              url: "https://www.simuladorpaes.cl/",
               color: "text-blue-600",
               borderColor: "border-blue-600",
               btnColor: "bg-blue-600"
@@ -699,7 +699,7 @@ const slides = [
             { 
               title: "Simulador Ranking", 
               desc: "Calcula tu posición", 
-              url: "https://pj.demre.cl/",
+              url: "https://www.simuladorpaes.cl/",
               color: "text-teal-500",
               borderColor: "border-teal-500",
               btnColor: "bg-teal-500"
