@@ -855,6 +855,14 @@ export default function App() {
         </div>
         <span className="font-display font-extrabold text-xl tracking-tight hidden sm:block">PACE 2026</span>
       </div>
+
+      {/* Creator Footer */}
+      <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 text-right">
+        <p className="text-[10px] md:text-xs font-bold text-text-muted opacity-60 leading-tight">
+          Creado por: Christian Núñez <br/>
+          Asesor Pedagógico, Programa PACE-UDA, 2026.
+        </p>
+      </div>
     </div>
   );
 }
