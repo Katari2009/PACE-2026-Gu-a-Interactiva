@@ -172,7 +172,7 @@ const slides = [
         </div>
         <Reveal delay={0.5}>
           <div className="mt-8 md:mt-12 p-4 md:p-6 bg-black text-white text-center rounded-2xl font-display text-lg md:text-xl italic">
-            Objetivo principal: Acompañar tu 3° y 4° medio con apoyo permanente para asegurar tu futuro.
+            Objetivo principal: Acompañarte en 3° y 4° medio con apoyo permanente para asegurar tu futuro.
           </div>
         </Reveal>
       </div>
