@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #f0f7ff;
+  --color-bg-deep: #e8f4fd;
+  --color-surface: #ffffff;
+  --color-text: #102033;
+  --color-text-secondary: #31445a;
+  --color-text-muted: #66778c;
+  --color-accent-1: #2563eb;
+  --color-accent-2: #14b8a6;
+  --color-accent-3: #f59e0b;
+  --color-glass-bg: rgba(255,255,255,0.82);
+  --color-glass-border: rgba(16,32,51,0.08);
+  --color-vignette: rgba(0,0,0,0.05);
+  --font-display: 'Plus Jakarta Sans', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+@layer base {
+  :root {
+    --color-bg: #f0f7ff;
+    --color-text: #102033;
+    --glow-color-rgb: 37, 99, 235;
+  }
+
+  * {
+    @apply box-border;
+  }
+
+  html, body {
+    @apply bg-bg m-0 overflow-hidden h-screen w-screen;
+    font-family: var(--font-body);
+    color: var(--color-text);
+  }
+}
+
+@layer components {
+  .pill {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600/10 text-blue-700 font-bold uppercase text-[0.78rem] tracking-wider;
+  }
+
+  .card {
+    @apply bg-white/80 border border-black/10 rounded-3xl shadow-lg shadow-blue-600/5 backdrop-blur-md;
+  }
+
+  .metric {
+    @apply bg-linear-to-br from-blue-600/10 to-teal-500/10 border border-blue-600/10 rounded-2xl;
+  }
+
+  .bar-track {
+    @apply w-full h-4 rounded-full bg-blue-600/10 overflow-hidden;
+  }
+
+  .bar-fill {
+    @apply h-full rounded-full bg-linear-to-r from-blue-600 to-teal-500;
+  }
+}
+
+@keyframes float-slow {
+  0% { transform: translate(0,0) scale(1); }
+  25% { transform: translate(60px,-40px) scale(1.08); }
+  50% { transform: translate(-40px,20px) scale(.94); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+@keyframes float-drift {
+  0% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(-40px,-50px) scale(1.12); }
+  66% { transform: translate(40px,30px) scale(.9); }
+  100% { transform: translate(0,0) scale(1); }
+}
+
+.blob {
+  @apply absolute rounded-full blur-[80px];
+  animation: float-slow 12s ease-in-out infinite;
+}
+
+.blob:nth-child(2) {
+  animation: float-drift 16s ease-in-out infinite;
+}
+
+.blob:nth-child(3) {
+  animation: float-slow 18s ease-in-out infinite reverse;
+}
