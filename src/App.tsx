@@ -812,41 +812,22 @@ export default function App() {
         </div>
       </main>
 
-      {/* Navigation Controls */}
-      <div className="fixed bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 md:gap-6 px-4 md:px-6 py-2 md:py-3 bg-white/80 backdrop-blur-xl rounded-full border border-black/5 shadow-2xl scale-90 md:scale-100">
-        <button 
-          onClick={prevSlide}
-          className="p-1.5 md:p-2 rounded-full hover:bg-blue-600/10 text-blue-600 transition-colors"
-          aria-label="Anterior"
-        >
-          <ChevronLeft size={24} className="md:w-7 md:h-7" />
-        </button>
-        
-        <div className="flex gap-1.5 md:gap-2">
-          {slides.map((_, i) => (
-            <button
-              key={i}
-              onClick={() => setCurrentSlide(i)}
-              className={`h-2 md:h-2.5 rounded-full transition-all duration-300 ${
-                i === currentSlide ? "bg-blue-600 scale-110 md:scale-125 w-4 md:w-6" : "bg-blue-600/20 w-2 md:w-2.5"
-              }`}
-              aria-label={`Ir a diapositiva ${i + 1}`}
-            />
-          ))}
-        </div>
+      {/* Navigation Arrows */}
+      <button 
+        onClick={prevSlide}
+        className="fixed left-2 md:left-8 top-1/2 -translate-y-1/2 z-50 p-2 md:p-4 rounded-full bg-white/80 backdrop-blur-xl border border-black/5 shadow-xl text-blue-600 hover:bg-blue-600 hover:text-white transition-all group active:scale-95"
+        aria-label="Anterior"
+      >
+        <ChevronLeft size={24} className="md:w-8 md:h-8 group-hover:-translate-x-1 transition-transform" />
+      </button>
 
-        <button 
-          onClick={nextSlide}
-          className="p-1.5 md:p-2 rounded-full hover:bg-blue-600/10 text-blue-600 transition-colors"
-          aria-label="Siguiente"
-        >
-          <ChevronRight size={24} className="md:w-7 md:h-7" />
-        </button>
-
-        <div className="hidden sm:block pl-3 md:pl-4 border-l border-black/10 text-xs md:text-sm font-bold text-text-muted min-w-[40px] md:min-w-[60px] text-center">
-          {currentSlide + 1} / {slides.length}
-        </div>
-      </div>
+      <button 
+        onClick={nextSlide}
+        className="fixed right-2 md:right-8 top-1/2 -translate-y-1/2 z-50 p-2 md:p-4 rounded-full bg-white/80 backdrop-blur-xl border border-black/5 shadow-xl text-blue-600 hover:bg-blue-600 hover:text-white transition-all group active:scale-95"
+        aria-label="Siguiente"
+      >
+        <ChevronRight size={24} className="md:w-8 md:h-8 group-hover:translate-x-1 transition-transform" />
+      </button>
 
       {/* Branding / Logo Placeholder */}
       <div className="fixed top-8 left-8 z-50 flex items-center gap-3">
