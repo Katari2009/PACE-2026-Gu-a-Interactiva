@@ -103,558 +103,6 @@ const ProgressBar = ({ label, value, delay = 0 }: { label: string; value: number
   </div>
 );
 
-// --- Slides ---
-
-const slides = [
-  {
-    id: 1,
-    content: (
-      <div className="text-center relative">
-        <motion.div 
-          className="absolute -top-24 left-1/2 -translate-x-1/2 opacity-10 pointer-events-none"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        >
-          <Route size={400} />
-        </motion.div>
-        <Reveal delay={0.1}>
-          <div className="pill mx-auto mb-6 bg-blue-600 text-white border-none px-6 py-2">
-            Implementado por la Universidad de Atacama
-          </div>
-        </Reveal>
-        <Reveal delay={0.2}>
-          <h1 className="font-display text-[clamp(2.2rem,7vw,5.5rem)] font-black tracking-tighter mb-4 md:mb-6 leading-[0.9] uppercase italic">
-            Tu Ruta Hacia la <br/>
-            <span className="text-blue-600">Educación Superior</span>
-          </h1>
-        </Reveal>
-        <Reveal delay={0.3}>
-          <div className="inline-block bg-black text-white px-6 md:px-8 py-3 md:py-4 transform -skew-x-12 mb-6 md:mb-8">
-            <span className="font-display text-2xl md:text-4xl font-bold italic block skew-x-12">Descubre tu Poder PACE 2026</span>
-          </div>
-        </Reveal>
-        <Reveal delay={0.4}>
-          <p className="text-[clamp(1rem,2vw,1.6rem)] text-text-secondary max-w-2xl mx-auto font-medium px-4 md:px-0">
-            Guía estratégica y hoja de ruta 2025–2026 para estudiantes de 4º medio.
-          </p>
-        </Reveal>
-      </div>
-    )
-  },
-  {
-    id: 2,
-    content: (
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <h2 className="font-display text-[clamp(1.5rem,4vw,3rem)] font-black mb-8 md:mb-12 italic text-center">
-            El Ecosistema de Educación Superior: <br/>
-            <span className="text-blue-600">¿Dónde puedo estudiar?</span>
-          </h2>
-        </Reveal>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {[
-            { title: "CFT", full: "Centro de Formación Técnica", dur: "2 años", deg: "Técnico Nivel Superior", icon: <Zap /> },
-            { title: "IP", full: "Instituto Profesional", dur: "4 años", deg: "Profesional y Técnico", icon: <Briefcase /> },
-            { title: "Universidad", full: "Universidad (U)", dur: "Variable", deg: "Licenciatura + Título Prof.", icon: <GraduationCap /> },
-            { title: "FF.AA.", full: "Fuerzas Armadas", dur: "Variable", deg: "Especialidades y Grados", icon: <Shield /> }
-          ].map((item, i) => (
-            <Reveal key={i} delay={i * 0.1}>
-              <div className="card p-6 md:p-8 flex flex-col h-full hover:border-blue-600 transition-colors">
-                <div className="w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-4">
-                  {React.cloneElement(item.icon as React.ReactElement, { size: 24 })}
-                </div>
-                <h3 className="text-xl font-black italic mb-1">{item.title}</h3>
-                <p className="text-xs font-bold text-text-muted mb-4">{item.full}</p>
-                <div className="mt-auto space-y-2">
-                  <div className="flex justify-between text-xs font-bold border-b border-black/5 pb-1">
-                    <span className="text-text-muted uppercase">Duración:</span>
-                    <span>{item.dur}</span>
-                  </div>
-                  <div className="flex justify-between text-xs font-bold border-b border-black/5 pb-1">
-                    <span className="text-text-muted uppercase">Título:</span>
-                    <span className="text-right">{item.deg}</span>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 3,
-    content: (
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <h2 className="font-display text-[clamp(1.5rem,4vw,3.5rem)] font-black mb-8 md:mb-12 italic text-center">
-            El Motor de tu Futuro: <br/>
-            <span className="text-blue-600">Financiamiento y el FUAS</span>
-          </h2>
-        </Reveal>
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 md:gap-6">
-          {[
-            { pct: "100%", title: "Pila Completa", desc: "Gratuidad, becas y créditos de arancel.", icon: <BatteryFull className="text-green-500" /> },
-            { pct: "50%", title: "1/2 Pila", desc: "Becas Hijos de Prof., Excelencia Académica.", icon: <BatteryMedium className="text-teal-500" /> },
-            { pct: "33%", title: "1/3 Pila", desc: "Becas y créditos de arancel.", icon: <BatteryMedium className="text-blue-500" /> },
-            { pct: "25%", title: "1/4 Pila", desc: "Crédito con Garantía Estatal (CAE).", icon: <BatteryLow className="text-orange-500" /> },
-            { pct: "X", title: "Sin Nivel", desc: "Acreditación socioeconómica directa.", icon: <Battery className="text-red-500" /> }
-          ].map((item, i) => (
-            <Reveal key={i} delay={i * 0.1}>
-              <div className="card p-6 text-center flex flex-col h-full group hover:shadow-xl transition-all">
-                <div className="mb-4 flex justify-center transform group-hover:scale-110 transition-transform">
-                  {React.cloneElement(item.icon as React.ReactElement, { size: 48, strokeWidth: 1.5 })}
-                </div>
-                <div className="text-2xl font-black mb-1">{item.pct}</div>
-                <h3 className="font-bold text-sm mb-2 uppercase tracking-tight">{item.title}</h3>
-                <p className="text-[10px] font-medium text-text-secondary leading-tight">{item.desc}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={0.6}>
-          <div className="mt-8 p-4 bg-blue-50 rounded-xl border border-blue-100 text-center text-sm font-bold text-blue-800">
-            El FUAS es la llave maestra para acceder a estos beneficios según tu nivel socioeconómico.
-          </div>
-        </Reveal>
-      </div>
-    )
-  },
-  {
-    id: 4,
-    content: (
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <h2 className="font-display text-[clamp(1.5rem,4vw,3.5rem)] font-black mb-8 md:mb-12 italic text-center">
-            ¿Qué es el <span className="text-blue-600">Programa PACE?</span>
-          </h2>
-        </Reveal>
-        <div className="relative">
-          <div className="absolute top-1/2 left-0 w-full h-2 bg-blue-600/10 -translate-y-1/2 hidden lg:block" />
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8 relative z-10">
-            <Reveal delay={0.1}>
-              <div className="card p-6 md:p-8 bg-white border-l-8 border-teal-500">
-                <h3 className="text-xl font-black italic mb-2">Fase 1 (3° y 4° medio)</h3>
-                <p className="text-xs font-bold text-teal-600 uppercase mb-4">PEM: Prep. Enseñanza Media</p>
-                <p className="text-sm font-medium text-text-secondary">Acompañamiento y exploración vocacional mientras cursas tus últimos años de liceo.</p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <div className="card p-6 md:p-8 bg-blue-600 text-white border-none shadow-xl shadow-blue-600/20 text-center flex flex-col justify-center">
-                <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <ShieldCheck size={24} />
-                </div>
-                <h3 className="text-xl font-black italic mb-2">El Puente</h3>
-                <p className="text-xs font-bold uppercase mb-4 opacity-80">Aseguramiento de Cupos</p>
-                <p className="text-sm font-medium">Acceso garantizado a la educación superior si cumples los criterios.</p>
-              </div>
-            </Reveal>
-            <Reveal delay={0.3}>
-              <div className="card p-6 md:p-8 bg-white border-r-8 border-amber-500 text-right lg:text-left">
-                <h3 className="text-xl font-black italic mb-2">Fase 2 (Universidad)</h3>
-                <p className="text-xs font-bold text-amber-600 uppercase mb-4">AES: Acomp. Ed. Superior</p>
-                <p className="text-sm font-medium text-text-secondary">Apoyo académico, psicoeducativo y de matrícula una vez que ingresas.</p>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-        <Reveal delay={0.5}>
-          <div className="mt-12 text-center">
-            <p className="text-lg font-bold text-text-muted italic">
-              "Un puente directo desde tu liceo público hacia la educación superior, a través de las 29 instituciones participantes."
-            </p>
-          </div>
-        </Reveal>
-      </div>
-    )
-  },
-  {
-    id: 5,
-    content: (
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <h2 className="font-display text-[clamp(1.5rem,4vw,3.5rem)] font-black mb-8 md:mb-12 italic text-center">
-            La Red PACE Atacama: <br/>
-            <span className="text-blue-600">Nuestros Socios Educacionales</span>
-          </h2>
-        </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {[
-            { city: "Chañaral / Diego de Almagro", schools: ["Liceo Federico Varela", "Liceo Bicentenario Manuel Magalhaes Medling"], color: "bg-blue-600" },
-            { city: "Caldera", schools: ["Liceo Manuel Blanco Encalada"], color: "bg-amber-500" },
-            { city: "Copiapó", schools: ["Liceo José Antonio Carvajal", "Liceo Polivalente El Palomar", "Liceo Jorge Alessandri Rodríguez", "Escuela de Concentración Fronteriza 'Los Loros'", "Instituto Comercial Alejandro Rivera Díaz", "Liceo Tecnológico de Copiapó"], color: "bg-teal-500" },
-            { city: "Provincia del Huasco", schools: ["Liceo Bicentenario Alto del Carmen", "Liceo José Santos Ossa (Vallenar)", "Instituto Técnico de Servicios Profesionales (Vallenar)", "Liceo Bicentenario (Vallenar)", "Liceo Pedro Troncoso Machuca", "Liceo Bicentenario Ramón Freire (Freirina)", "Liceo Japón (Huasco)"], color: "bg-blue-600" }
-          ].map((item, i) => (
-            <Reveal key={i} delay={i * 0.1}>
-              <div className="card p-6 h-full flex flex-col border-t-4 border-black/5">
-                <div className={`w-10 h-10 ${item.color} text-white rounded-lg flex items-center justify-center mb-4`}>
-                  <Map size={20} />
-                </div>
-                <h3 className="text-lg font-black italic mb-4 leading-tight">{item.city}</h3>
-                <ul className="space-y-2 mt-auto">
-                  {item.schools.map((school, j) => (
-                    <li key={j} className="text-[10px] md:text-xs font-bold text-text-secondary flex items-start gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-black/20 mt-1 shrink-0" />
-                      {school}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 6,
-    content: (
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <h2 className="font-display text-[clamp(1.5rem,4vw,3.5rem)] font-black mb-8 md:mb-12 italic text-center">
-            Vías de Ingreso: <br/>
-            <span className="text-blue-600">¿Cómo entrar a la Universidad?</span>
-          </h2>
-        </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-          {[
-            { 
-              title: "Admisión Regular", 
-              sub: "Puntaje PAES", 
-              desc: "Ingreso tradicional basado exclusivamente en alcanzar el puntaje promedio mínimo y competir por vacantes generales.",
-              color: "border-blue-600",
-              icon: <BarChart3 />
-            },
-            { 
-              title: "Vía PACE", 
-              sub: "Cupo PACE", 
-              desc: "Acceso asegurado mediante cupos reservados específicamente para estudiantes habilitados por el programa, independientemente de la competencia general.",
-              color: "border-teal-500 bg-teal-50/30 shadow-xl shadow-teal-500/10",
-              icon: <Trophy />,
-              highlight: true
-            },
-            { 
-              title: "Admisión Especial", 
-              sub: "Ingreso Directo / Otras Vías", 
-              desc: "Accesos enfocados en equidad, talentos específicos (deportivo, artístico, científico), estudiantes técnicos profesionales, o personas con discapacidad (vía DEMRE).",
-              color: "border-amber-500",
-              icon: <Users />
-            }
-          ].map((item, i) => (
-            <Reveal key={i} delay={i * 0.1}>
-              <div className={`card p-8 h-full flex flex-col border-2 ${item.color} relative overflow-hidden`}>
-                {item.highlight && <div className="absolute top-0 right-0 bg-teal-500 text-white px-3 py-1 text-[10px] font-black uppercase tracking-widest">Recomendado</div>}
-                <div className="w-12 h-12 bg-white border border-black/5 rounded-xl flex items-center justify-center mb-6 shadow-sm">
-                  {React.cloneElement(item.icon as React.ReactElement, { size: 24, className: item.color.split(' ')[0].replace('border-', 'text-') })}
-                </div>
-                <h3 className="text-2xl font-black italic mb-1">{item.title}</h3>
-                <p className="text-xs font-bold uppercase tracking-widest text-text-muted mb-6">{item.sub}</p>
-                <p className="text-sm font-medium text-text-secondary leading-relaxed">{item.desc}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 7,
-    content: (
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <h2 className="font-display text-[clamp(1.5rem,4vw,3.5rem)] font-black mb-8 md:mb-12 italic text-center">
-            Las 3 Llaves: <br/>
-            <span className="text-blue-600">Criterios de Habilitación PACE</span>
-          </h2>
-        </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative">
-          <div className="absolute top-1/2 left-0 w-full h-1 bg-teal-500/20 -translate-y-1/2 hidden lg:block" />
-          {[
-            { 
-              title: "Trayectoria", 
-              desc: "Cursar 3° y 4° medio en un liceo PACE, y egresar (Promoción 2024/correspondiente) de un establecimiento con la misma condición.",
-              icon: <Route />,
-              color: "bg-blue-600"
-            },
-            { 
-              title: "Rendimiento Académico", 
-              desc: "Estar en el 25% superior de puntaje ranking de notas de tu establecimiento OR obtener un ranking igual o superior a 815 puntos (Admisión 2025).",
-              icon: <BarChart3 />,
-              color: "bg-teal-500"
-            },
-            { 
-              title: "Pruebas PAES", 
-              desc: "Rendir obligatoriamente: PAES Competencia Lectora, PAES Competencia Matemática 1, PLUS una prueba electiva para el proceso 2026.",
-              icon: <ClipboardList />,
-              color: "bg-amber-500"
-            }
-          ].map((item, i) => (
-            <Reveal key={i} delay={i * 0.1}>
-              <div className="card p-6 md:p-8 h-full flex flex-col items-center text-center bg-white relative z-10">
-                <div className={`w-16 h-16 ${item.color} text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg transform group-hover:rotate-6 transition-transform`}>
-                  {React.cloneElement(item.icon as React.ReactElement, { size: 32 })}
-                </div>
-                <h3 className="text-xl font-black italic mb-4">{item.title}</h3>
-                <p className="text-sm font-medium text-text-secondary leading-relaxed">{item.desc}</p>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={0.5}>
-          <div className="mt-12 p-4 bg-teal-500 text-white rounded-xl text-center font-black uppercase tracking-widest text-xs md:text-sm">
-            Debes poseer estas tres llaves simultáneamente para asegurar tu cupo.
-          </div>
-        </Reveal>
-      </div>
-    )
-  },
-  {
-    id: 8,
-    content: (
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <h2 className="font-display text-[clamp(1.5rem,4vw,3.5rem)] font-black mb-8 md:mb-12 italic text-center">
-            Tu Equipo de Apoyo: <br/>
-            <span className="text-blue-600">¿Qué hacemos contigo en 4° Medio?</span>
-          </h2>
-        </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {[
-            { title: "Orientación Diaria", desc: "Talleres en aula, recreos informativos y entrevistas a profesionales.", icon: <Map /> },
-            { title: "Trámites Clave", desc: "Acompañamiento guiado en inscripción PAES y postulación FUAS.", icon: <ClipboardList /> },
-            { title: "Inmersión Universitaria", desc: "Visitas pedagógicas a la universidad y charlas para futuros estudiantes de pedagogía.", icon: <Building /> },
-            { title: "Gestión Familiar", desc: "Jornadas con apoderados, talleres sobre RSH y situación migratoria.", icon: <Users /> }
-          ].map((item, i) => (
-            <Reveal key={i} delay={i * 0.1}>
-              <div className="card p-6 flex items-center gap-6 hover:bg-blue-50 transition-colors group">
-                <div className="w-16 h-16 bg-blue-600 text-white rounded-xl flex items-center justify-center shrink-0 shadow-lg group-hover:scale-110 transition-transform">
-                  {React.cloneElement(item.icon as React.ReactElement, { size: 32 })}
-                </div>
-                <div>
-                  <h3 className="text-xl font-black italic mb-1">{item.title}</h3>
-                  <p className="text-sm font-medium text-text-secondary">{item.desc}</p>
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={0.5}>
-          <div className="mt-12 text-center">
-            <p className="text-lg font-bold text-text-muted italic">
-              "Metodología participativa, dialogante y colaborativa en horario de clases."
-            </p>
-          </div>
-        </Reveal>
-      </div>
-    )
-  },
-  {
-    id: 9,
-    content: (
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <h2 className="font-display text-[clamp(1.5rem,4vw,3.5rem)] font-black mb-8 md:mb-12 italic text-center">
-            Centro de Control: <br/>
-            <span className="text-blue-600">Tu Lista de Tareas (Parte 1)</span>
-          </h2>
-        </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          <Reveal delay={0.1}>
-            <div className="card p-8 bg-white border-t-8 border-blue-600 h-full">
-              <h3 className="text-2xl font-black italic mb-6 flex items-center gap-3">
-                <IdCard className="text-blue-600" /> Trámites Personales
-              </h3>
-              <ul className="space-y-6">
-                <li className="flex gap-4">
-                  <div className="w-6 h-6 rounded border-2 border-blue-600 flex items-center justify-center shrink-0 mt-1">
-                    <div className="w-3 h-3 bg-blue-600 rounded-sm" />
-                  </div>
-                  <p className="text-base font-bold text-text-secondary leading-tight">
-                    Mantener y cuidar la Cédula de Identidad (debe estar vigente para junio 2025).
-                  </p>
-                </li>
-                <li className="flex gap-4">
-                  <div className="w-6 h-6 rounded border-2 border-blue-600 flex items-center justify-center shrink-0 mt-1">
-                    <div className="w-3 h-3 bg-blue-600 rounded-sm" />
-                  </div>
-                  <p className="text-base font-bold text-text-secondary leading-tight">
-                    Crear un correo electrónico personal definitivo (con clave recordable, listo para junio).
-                  </p>
-                </li>
-              </ul>
-            </div>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="card p-8 bg-white border-t-8 border-teal-500 h-full">
-              <h3 className="text-2xl font-black italic mb-6 flex items-center gap-3">
-                <Users className="text-teal-500" /> Gestión Familiar (El RSH)
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  "Verificar que el Registro Social de Hogares (RSH) esté actualizado y vigente (antes de septiembre 2025).",
-                  "Recopilar datos exactos del grupo familiar residente (RUT, Nombre, Estado Civil, Parentesco, Actividad, Nivel de Estudio) para octubre.",
-                  "Conseguir el promedio mensual de los ingresos del grupo familiar (años 2024 y 2025)."
-                ].map((text, i) => (
-                  <li key={i} className="flex gap-4">
-                    <div className="w-6 h-6 rounded border-2 border-teal-500 flex items-center justify-center shrink-0 mt-1">
-                      <div className="w-3 h-3 bg-teal-500 rounded-sm" />
-                    </div>
-                    <p className="text-sm font-bold text-text-secondary leading-tight">{text}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 10,
-    content: (
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <h2 className="font-display text-[clamp(1.5rem,4vw,3.5rem)] font-black mb-8 md:mb-12 italic text-center">
-            Centro de Control: <br/>
-            <span className="text-blue-600">Tu Lista de Tareas (Parte 2)</span>
-          </h2>
-        </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-          <Reveal delay={0.1}>
-            <div className="card p-8 bg-white border-t-8 border-amber-500 h-full">
-              <h3 className="text-2xl font-black italic mb-6 flex items-center gap-3">
-                <GraduationCap className="text-amber-500" /> Académico
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  "Mantener un promedio de notas alto en 4° medio (cada décima cuenta para tu Ranking).",
-                  "Asegurar una asistencia a clases superior al 85% (requisito de promoción escolar).",
-                  "Participar activamente en todos los talleres y jornadas PACE programadas."
-                ].map((text, i) => (
-                  <li key={i} className="flex gap-4">
-                    <div className="w-6 h-6 rounded border-2 border-amber-500 flex items-center justify-center shrink-0 mt-1">
-                      <div className="w-3 h-3 bg-amber-500 rounded-sm" />
-                    </div>
-                    <p className="text-sm font-bold text-text-secondary leading-tight">{text}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="card p-8 bg-white border-t-8 border-red-500 h-full">
-              <h3 className="text-2xl font-black italic mb-6 flex items-center gap-3">
-                <Target className="text-red-500" /> Desafío PAES
-              </h3>
-              <ul className="space-y-4">
-                {[
-                  "Inscribir la PAES Regular en el portal DEMRE (junio - agosto 2025).",
-                  "Rendir las pruebas obligatorias (Lectora, M1) y al menos una electiva (Ciencias o Historia).",
-                  "Descargar y guardar la Tarjeta de Identificación PAES (noviembre 2025)."
-                ].map((text, i) => (
-                  <li key={i} className="flex gap-4">
-                    <div className="w-6 h-6 rounded border-2 border-red-500 flex items-center justify-center shrink-0 mt-1">
-                      <div className="w-3 h-3 bg-red-500 rounded-sm" />
-                    </div>
-                    <p className="text-sm font-bold text-text-secondary leading-tight">{text}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 11,
-    content: (
-      <div className="max-w-6xl mx-auto">
-        <Reveal>
-          <h2 className="font-display text-[clamp(1.5rem,4vw,3.5rem)] font-black mb-8 md:mb-12 italic text-center">
-            Hoja de Ruta 2025: <br/>
-            <span className="text-blue-600">Hitos que no puedes olvidar</span>
-          </h2>
-        </Reveal>
-        <div className="relative">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-blue-100 -translate-x-1/2 hidden md:block" />
-          <div className="space-y-8 md:space-y-12">
-            {[
-              { month: "Junio - Agosto", title: "Inscripción PAES", desc: "Proceso obligatorio en demre.cl para rendir las pruebas en noviembre.", color: "bg-blue-600" },
-              { month: "Octubre", title: "Postulación FUAS", desc: "Inscripción para gratuidad y beneficios en beneficiosestudiantiles.cl.", color: "bg-teal-500" },
-              { month: "Diciembre", title: "Rendición PAES", desc: "Días clave para demostrar tus competencias a nivel nacional.", color: "bg-amber-500" },
-              { month: "Enero 2026", title: "Postulación Centralizada", desc: "Momento de elegir tus carreras y universidades usando tu cupo PACE.", color: "bg-red-500" }
-            ].map((item, i) => (
-              <Reveal key={i} delay={i * 0.1}>
-                <div className={`relative flex flex-col md:flex-row items-center gap-4 md:gap-8 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
-                  <div className="hidden md:block absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-white border-4 border-blue-600 z-10" />
-                  <div className="w-full md:w-1/2 text-center md:text-left">
-                    <div className={`inline-block px-4 py-1 rounded-full text-white font-black text-xs mb-2 ${item.color}`}>
-                      {item.month}
-                    </div>
-                    <h3 className="text-xl font-black italic mb-1">{item.title}</h3>
-                    <p className="text-sm font-medium text-text-secondary">{item.desc}</p>
-                  </div>
-                  <div className="hidden md:block w-1/2" />
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </div>
-    )
-  },
-  {
-    id: 12,
-    content: (
-      <div className="max-w-4xl mx-auto text-center">
-        <Reveal>
-          <div className="w-24 h-24 bg-blue-600 text-white rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl rotate-3">
-            <Rocket size={48} />
-          </div>
-          <h2 className="font-display text-[clamp(2rem,6vw,4.5rem)] font-black mb-6 italic leading-tight">
-            Tú eres el <br/>
-            <span className="text-blue-600">Protagonista</span>
-          </h2>
-          <p className="text-xl md:text-2xl font-bold text-text-secondary mb-12 leading-relaxed">
-            El camino a la Educación Superior no lo recorres solo. <br/>
-            El equipo PACE UDA está aquí para impulsarte.
-          </p>
-        </Reveal>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { icon: <Instagram />, label: "@paceuda", url: "https://instagram.com/paceuda" },
-            { icon: <Globe />, label: "pace.uda.cl", url: "https://pace.uda.cl" },
-            { icon: <Mail />, label: "pace@uda.cl", url: "mailto:pace@uda.cl" }
-          ].map((item, i) => (
-            <Reveal key={i} delay={0.5 + i * 0.1}>
-              <a 
-                href={item.url} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="card p-6 flex flex-col items-center gap-3 hover:bg-blue-50 transition-all hover:-translate-y-1"
-              >
-                <div className="text-blue-600">{React.cloneElement(item.icon as React.ReactElement, { size: 32 })}</div>
-                <span className="font-black italic">{item.label}</span>
-              </a>
-            </Reveal>
-          ))}
-        </div>
-        <Reveal delay={1}>
-          <div className="mt-16">
-            <button 
-              onClick={() => setCurrentSlide(0)}
-              className="px-8 py-4 bg-black text-white rounded-2xl font-black italic uppercase tracking-widest hover:bg-blue-600 transition-colors shadow-xl"
-            >
-              Reiniciar Guía
-            </button>
-          </div>
-        </Reveal>
-      </div>
-    )
-  }
-];
-
 // --- Main App ---
 
 export default function App() {
@@ -892,13 +340,13 @@ export default function App() {
             {[
               { 
                 title: "Trayectoria", 
-                desc: "Cursar 3° y 4° medio en un liceo PACE, y egresar (Promoción 2024/correspondiente) de un establecimiento con la misma condition.",
+                desc: "Cursar 3° y 4° medio en un liceo PACE, y egresar (Promoción 2026/correspondiente) de un establecimiento con la misma condition.",
                 icon: <Route />,
                 color: "bg-blue-600"
               },
               { 
                 title: "Rendimiento Académico", 
-                desc: "Estar en el 25% superior de puntaje ranking de notas de tu establecimiento OR obtener un ranking igual o superior a 815 puntos (Admisión 2025).",
+                desc: "Estar en el 25% superior de puntaje ranking de notas de tu establecimiento OR obtener un ranking igual o superior a 815 puntos (Admisión 2026).",
                 icon: <BarChart3 />,
                 color: "bg-teal-500"
               },
@@ -990,7 +438,7 @@ export default function App() {
                       <div className="w-3 h-3 bg-blue-600 rounded-sm" />
                     </div>
                     <p className="text-base font-bold text-text-secondary leading-tight">
-                      Mantener y cuidar la Cédula de Identidad (debe estar vigente para junio 2025).
+                      Mantener y cuidar la Cédula de Identidad (debe estar vigente para junio 2026).
                     </p>
                   </li>
                   <li className="flex gap-4">
@@ -1011,9 +459,9 @@ export default function App() {
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "Verificar que el Registro Social de Hogares (RSH) esté actualizado y vigente (antes de septiembre 2025).",
+                    "Verificar que el Registro Social de Hogares (RSH) esté actualizado y vigente (antes de septiembre 2026).",
                     "Recopilar datos exactos del grupo familiar residente (RUT, Nombre, Estado Civil, Parentesco, Actividad, Nivel de Estudio) para octubre.",
-                    "Conseguir el promedio mensual de los ingresos del grupo familiar (años 2024 y 2025)."
+                    "Conseguir el promedio mensual de los ingresos del grupo familiar (años 2025 y 2026)."
                   ].map((text, i) => (
                     <li key={i} className="flex gap-4">
                       <div className="w-6 h-6 rounded border-2 border-teal-500 flex items-center justify-center shrink-0 mt-1">
@@ -1068,9 +516,9 @@ export default function App() {
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "Inscribir la PAES Regular en el portal DEMRE (junio - agosto 2025).",
+                    "Inscribir la PAES Regular en el portal DEMRE (junio - agosto 2026).",
                     "Rendir las pruebas obligatorias (Lectora, M1) y al menos una electiva (Ciencias o Historia).",
-                    "Descargar y guardar la Tarjeta de Identificación PAES (noviembre 2025)."
+                    "Descargar y guardar la Tarjeta de Identificación PAES (noviembre 2026)."
                   ].map((text, i) => (
                     <li key={i} className="flex gap-4">
                       <div className="w-6 h-6 rounded border-2 border-red-500 flex items-center justify-center shrink-0 mt-1">
@@ -1092,7 +540,7 @@ export default function App() {
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <h2 className="font-display text-[clamp(1.5rem,4vw,3.5rem)] font-black mb-8 md:mb-12 italic text-center">
-              Hoja de Ruta 2025: <br/>
+              Hoja de Ruta 2026: <br/>
               <span className="text-blue-600">Hitos que no puedes olvidar</span>
             </h2>
           </Reveal>
@@ -1103,7 +551,7 @@ export default function App() {
                 { month: "Junio - Agosto", title: "Inscripción PAES", desc: "Proceso obligatorio en demre.cl para rendir las pruebas en noviembre.", color: "bg-blue-600" },
                 { month: "Octubre", title: "Postulación FUAS", desc: "Inscripción para gratuidad y beneficios en beneficiosestudiantiles.cl.", color: "bg-teal-500" },
                 { month: "Diciembre", title: "Rendición PAES", desc: "Días clave para demostrar tus competencias a nivel nacional.", color: "bg-amber-500" },
-                { month: "Enero 2026", title: "Postulación Centralizada", desc: "Momento de elegir tus carreras y universidades usando tu cupo PACE.", color: "bg-red-500" }
+                { month: "Enero 2027", title: "Postulación Centralizada", desc: "Momento de elegir tus carreras y universidades usando tu cupo PACE.", color: "bg-red-500" }
               ].map((item, i) => (
                 <Reveal key={i} delay={i * 0.1}>
                   <div className={`relative flex flex-col md:flex-row items-center gap-4 md:gap-8 ${i % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
