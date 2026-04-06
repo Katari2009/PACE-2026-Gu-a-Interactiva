@@ -276,7 +276,7 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {[
               { prov: "Provincia de Copiapó", liceos: ["Liceo Polivalente el Palomar", "Liceo José Antonio Carvajal", "Liceo Jorge Alessandri Rodríguez", "Escuela de Concentración Fronteriza \"Los Loros\"", "Instituto Comercial Alejandro Rivera Díaz", "Liceo Tecnológico de Copiapó", "Liceo Manuel Blanco Encalada"], color: "border-blue-600" },
-              { prov: "Provincia de Huasco", liceos: ["Liceo Bicentenario de Vallenar", "Liceo Bicentenario Pedro Troncoso Machuca", "Liceo Bicentenario de Alto del Carmen", "Liceo Bicentenario de Freirina", "Liceo Bicentenario de Huasco"], color: "border-teal-500" },
+              { prov: "Provincia de Huasco", liceos: ["Liceo Bicentenario de Vallenar", "Liceo Bicentenario Pedro Troncoso Machuca", "Liceo Bicentenario de Alto del Carmen", "Liceo Bicentenario de Freirina", "Liceo Bicentenario de Huasco", "Instituto Técnico de Servicios Profesionales de Vallenar"], color: "border-teal-500" },
               { prov: "Provincia de Chañaral", liceos: ["Liceo Bicentenario de Chañaral", "Liceo Bicentenario de Diego de Almagro"], color: "border-amber-500" }
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
