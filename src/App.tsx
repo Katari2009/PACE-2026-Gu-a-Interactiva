@@ -275,7 +275,7 @@ export default function App() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             {[
-              { prov: "Provincia de Copiapó", liceos: ["Liceo Bicentenario Mercedes Fritis Mackenney", "Liceo Bicentenario de Música", "Liceo Bicentenario El Palomar", "Liceo Bicentenario de Vallenar", "Liceo Bicentenario Pedro Troncoso Machuca"], color: "border-blue-600" },
+              { prov: "Provincia de Copiapó", liceos: ["Liceo Polivalente el Palomar", "Liceo José Antonio Carvajal", "Liceo Jorge Alessandri Rodríguez", "Escuela de Concentración Fronteriza \"Los Loros\"", "Instituto Comercial Alejandro Rivera Díaz", "Liceo Tecnológico de Copiapó", "Liceo Manuel Blanco Encalada"], color: "border-blue-600" },
               { prov: "Provincia de Huasco", liceos: ["Liceo Bicentenario de Vallenar", "Liceo Bicentenario Pedro Troncoso Machuca", "Liceo Bicentenario de Alto del Carmen", "Liceo Bicentenario de Freirina", "Liceo Bicentenario de Huasco"], color: "border-teal-500" },
               { prov: "Provincia de Chañaral", liceos: ["Liceo Bicentenario de Chañaral", "Liceo Bicentenario de Diego de Almagro"], color: "border-amber-500" }
             ].map((item, i) => (
@@ -346,13 +346,13 @@ export default function App() {
               },
               { 
                 title: "Rendimiento Académico", 
-                desc: "Estar en el 25% superior de puntaje ranking de notas de tu establecimiento OR obtener un ranking igual o superior a 815 puntos (Admisión 2026).",
+                desc: "Estar en el 25% superior de puntaje ranking de notas de tu establecimiento OR obtener un ranking igual o superior a 815 puntos (Admisión 2027).",
                 icon: <BarChart3 />,
                 color: "bg-teal-500"
               },
               { 
                 title: "Pruebas PAES", 
-                desc: "Rendir obligatoriamente: PAES Competencia Lectora, PAES Competencia Matemática 1, PLUS una prueba electiva para el proceso 2026.",
+                desc: "Rendir obligatoriamente: PAES Competencia Lectora, PAES Competencia Matemática 1, PLUS una prueba electiva para el proceso de admisión 2027.",
                 icon: <ClipboardList />,
                 color: "bg-amber-500"
               }
@@ -540,7 +540,7 @@ export default function App() {
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <h2 className="font-display text-[clamp(1.5rem,4vw,3.5rem)] font-black mb-8 md:mb-12 italic text-center">
-              Hoja de Ruta 2026: <br/>
+              Hoja de Ruta 2026-2027: <br/>
               <span className="text-blue-600">Hitos que no puedes olvidar</span>
             </h2>
           </Reveal>
