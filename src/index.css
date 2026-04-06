@@ -41,7 +41,7 @@
   }
 
   .card {
-    @apply bg-white/80 border border-black/10 rounded-3xl shadow-lg shadow-blue-600/5 backdrop-blur-md;
+    @apply bg-white/80 border border-black/10 rounded-3xl shadow-lg shadow-blue-600/5 backdrop-blur-md transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl hover:shadow-blue-600/10 hover:border-blue-600/30;
   }
 
   .metric {
@@ -69,6 +69,33 @@
   33% { transform: translate(-40px,-50px) scale(1.12); }
   66% { transform: translate(40px,30px) scale(.9); }
   100% { transform: translate(0,0) scale(1); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(3deg); }
+  50% { transform: rotate(-3deg); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+@keyframes float-subtle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
+}
+
+.animate-float-subtle {
+  animation: float-subtle 3s ease-in-out infinite;
 }
 
 .blob {

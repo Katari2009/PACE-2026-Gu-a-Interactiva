@@ -37,10 +37,19 @@ import {
   Mail,
   Instagram,
   Facebook,
-  Globe
+  Globe,
+  Menu,
+  X
 } from "lucide-react";
 
 // --- Components ---
+
+const Logo = ({ className = "" }: { className?: string }) => (
+  <div className={`flex flex-col leading-none ${className}`}>
+    <span className="font-display font-black text-lg tracking-tighter text-white italic">PACE-UDA</span>
+    <span className="text-[8px] font-black tracking-[0.2em] text-blue-400 uppercase">ATACAMA</span>
+  </div>
+);
 
 const Background = () => (
   <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#f0f7ff]">
@@ -107,6 +116,22 @@ const ProgressBar = ({ label, value, delay = 0 }: { label: string; value: number
 
 export default function App() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const menuItems = [
+    "Inicio",
+    "Ecosistema Superior",
+    "Financiamiento (FUAS)",
+    "Programa PACE",
+    "Red PACE Atacama",
+    "Vías de Ingreso",
+    "Criterios Habilitación",
+    "Equipo de Apoyo",
+    "Tareas (Parte 1)",
+    "Tareas (Parte 2)",
+    "Hoja de Ruta",
+    "Contacto"
+  ];
 
   const slides = [
     {
@@ -151,10 +176,10 @@ export default function App() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {[
-              { title: "CFT", desc: "Centros de Formación Técnica. Carreras de 2 años (Técnico de Nivel Superior).", icon: <Building2 />, color: "bg-blue-600" },
-              { title: "IP", desc: "Institutos Profesionales. Carreras técnicas y profesionales sin grado de licenciado.", icon: <Briefcase />, color: "bg-teal-500" },
-              { title: "Universidades", desc: "Carreras profesionales con grado de licenciado (5+ años).", icon: <GraduationCap />, color: "bg-amber-500" },
-              { title: "FF.AA. y de Orden", desc: "Escuelas matrices de las Fuerzas Armadas y de Orden.", icon: <Shield />, color: "bg-red-500" }
+              { title: "CFT", desc: <>Centros de Formación Técnica. Carreras de <b>2 años</b> (Técnico de Nivel Superior).</>, icon: <Building2 />, color: "bg-blue-600" },
+              { title: "IP", desc: <>Institutos Profesionales. Carreras <b>técnicas y profesionales</b> sin grado de licenciado.</>, icon: <Briefcase />, color: "bg-teal-500" },
+              { title: "Universidades", desc: <>Carreras profesionales con <b>grado de licenciado</b> (5+ años).</>, icon: <GraduationCap />, color: "bg-amber-500" },
+              { title: "FF.AA. y de Orden", desc: <>Escuelas matrices de las <b>Fuerzas Armadas y de Orden</b>.</>, icon: <Shield />, color: "bg-red-500" }
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div className="card p-6 md:p-8 h-full flex flex-col group hover:bg-blue-50 transition-colors">
@@ -189,9 +214,9 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
             <div className="space-y-6 md:space-y-8">
               {[
-                { level: "Gratuidad", desc: "Cubre matrícula y arancel por la duración nominal de la carrera.", icon: <BatteryFull />, color: "text-blue-600", pct: "60%" },
-                { level: "Becas", desc: "Aportes del Estado que cubren parte del arancel.", icon: <BatteryMedium />, color: "text-teal-500", pct: "70%" },
-                { level: "Créditos", desc: "Préstamos con baja tasa de interés (CAE y Fondo Solidario).", icon: <BatteryLow />, color: "text-amber-500", pct: "80%" }
+                { level: "Gratuidad", desc: <>Cubre <b>matrícula y arancel</b> por la duración nominal de la carrera.</>, icon: <BatteryFull />, color: "text-blue-600", pct: "60%" },
+                { level: "Becas", desc: <>Aportes del Estado que cubren <b>parte del arancel</b>.</>, icon: <BatteryMedium />, color: "text-teal-500", pct: "70%" },
+                { level: "Créditos", desc: <>Préstamos con <b>baja tasa de interés</b> (CAE y Fondo Solidario).</>, icon: <BatteryLow />, color: "text-amber-500", pct: "80%" }
               ].map((item, i) => (
                 <Reveal key={i} delay={i * 0.1}>
                   <div className="flex gap-4 md:gap-6 items-start group">
@@ -211,10 +236,10 @@ export default function App() {
             </div>
             <Reveal delay={0.4}>
               <div className="card p-8 bg-black text-white border-none shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 p-4 opacity-20"><Zap size={80} /></div>
+                <div className="absolute top-0 right-0 p-4 opacity-30 text-yellow-400 animate-pulse-soft"><Zap size={80} /></div>
                 <h3 className="text-2xl font-black italic mb-4">¿Cómo se postula?</h3>
                 <p className="text-lg font-bold mb-6 opacity-90 leading-relaxed">
-                  A través del Formulario Único de Acreditación Socioeconómica (FUAS). Es el paso OBLIGATORIO para acceder a todos los beneficios.
+                  A través del <span className="text-yellow-400">Formulario Único de Acreditación Socioeconómica (FUAS)</span>. Es el paso <span className="underline decoration-yellow-400 decoration-2 underline-offset-4">OBLIGATORIO</span> para acceder a todos los beneficios.
                 </p>
                 <div className="p-4 bg-white/10 rounded-xl border border-white/20">
                   <p className="text-sm font-black uppercase tracking-widest text-teal-400 mb-2">Dato Clave</p>
@@ -244,11 +269,11 @@ export default function App() {
               { phase: "AES", title: "Acompañamiento Ed. Superior", desc: "Tutorías y apoyo durante tus dos primeros años de carrera.", color: "bg-amber-500" }
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="card p-8 h-full border-t-8 border-black/5 hover:border-blue-600 transition-all">
-                  <div className={`inline-block px-3 py-1 rounded-lg ${item.color} text-white font-black text-xs mb-4`}>
+                <div className="card p-8 h-full border-t-8 border-black/5 hover:border-blue-600 transition-all group">
+                  <div className={`inline-block px-3 py-1 rounded-lg ${item.color} text-white font-black text-xs mb-4 group-hover:scale-110 transition-transform`}>
                     FASE {item.phase}
                   </div>
-                  <h3 className="text-xl font-black italic mb-3">{item.title}</h3>
+                  <h3 className="text-xl font-black italic mb-3 group-hover:text-blue-600 transition-colors">{item.title}</h3>
                   <p className="text-sm font-medium text-text-secondary leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
@@ -280,8 +305,8 @@ export default function App() {
               { prov: "Provincia de Chañaral", liceos: ["Liceo Bicentenario de Chañaral", "Liceo Bicentenario de Diego de Almagro"], color: "border-amber-500" }
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className={`card p-6 md:p-8 border-l-8 ${item.color} h-full`}>
-                  <h3 className="text-xl font-black italic mb-6">{item.prov}</h3>
+                <div className={`card p-6 md:p-8 border-l-8 ${item.color} h-full group`}>
+                  <h3 className="text-xl font-black italic mb-6 group-hover:text-blue-600 transition-colors">{item.prov}</h3>
                   <ul className="space-y-3">
                     {item.liceos.map((liceo, j) => (
                       <li key={j} className="flex items-start gap-2 text-sm font-bold text-text-secondary leading-tight">
@@ -314,8 +339,8 @@ export default function App() {
               { title: "Admisión Especial", desc: "Para deportistas destacados, talentos artísticos, pueblos originarios, etc.", icon: <Zap />, color: "bg-teal-500 text-white" }
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className={`card p-8 h-full flex flex-col items-center text-center ${item.color} border-none shadow-xl`}>
-                  <div className="mb-6">{React.cloneElement(item.icon as React.ReactElement, { size: 48 })}</div>
+                <div className={`card p-8 h-full flex flex-col items-center text-center ${item.color} border-none shadow-xl group`}>
+                  <div className="mb-6 group-hover:scale-110 transition-transform">{React.cloneElement(item.icon as React.ReactElement, { size: 48 })}</div>
                   <h3 className="text-2xl font-black italic mb-4">{item.title}</h3>
                   <p className="text-base font-bold opacity-90 leading-relaxed">{item.desc}</p>
                 </div>
@@ -340,29 +365,29 @@ export default function App() {
             {[
               { 
                 title: "Trayectoria", 
-                desc: "Cursar 3° y 4° medio en un liceo PACE, y egresar (Promoción 2026/correspondiente) de un establecimiento con la misma condition.",
+                desc: <>Cursar <b>3° y 4° medio</b> en un liceo PACE, y egresar de un establecimiento con la misma <b>condición</b>.</>,
                 icon: <Route />,
                 color: "bg-blue-600"
               },
               { 
                 title: "Rendimiento Académico", 
-                desc: "Estar en el 25% superior de puntaje ranking de notas de tu establecimiento OR obtener un ranking igual o superior a 815 puntos (Admisión 2027).",
+                desc: <>Estar en el <b>25% superior</b> de puntaje ranking de notas de tu establecimiento OR obtener un ranking igual o superior a <b>815 puntos</b>.</>,
                 icon: <BarChart3 />,
                 color: "bg-teal-500"
               },
               { 
                 title: "Pruebas PAES", 
-                desc: "Rendir obligatoriamente: PAES Competencia Lectora, PAES Competencia Matemática 1, PLUS una prueba electiva para el proceso de admisión 2027.",
+                desc: <>Rendir <b>obligatoriamente</b>: PAES Competencia Lectora, PAES Competencia Matemática 1, <b>PLUS</b> una prueba electiva.</>,
                 icon: <ClipboardList />,
                 color: "bg-amber-500"
               }
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="card p-6 md:p-8 h-full flex flex-col items-center text-center bg-white relative z-10">
-                  <div className={`w-16 h-16 ${item.color} text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg transform group-hover:rotate-6 transition-transform`}>
+                <div className="card p-6 md:p-8 h-full flex flex-col items-center text-center bg-white relative z-10 group">
+                  <div className={`w-16 h-16 ${item.color} text-white rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform`}>
                     {React.cloneElement(item.icon as React.ReactElement, { size: 32 })}
                   </div>
-                  <h3 className="text-xl font-black italic mb-4">{item.title}</h3>
+                  <h3 className="text-xl font-black italic mb-4 group-hover:text-blue-600 transition-colors">{item.title}</h3>
                   <p className="text-sm font-medium text-text-secondary leading-relaxed">{item.desc}</p>
                 </div>
               </Reveal>
@@ -428,9 +453,9 @@ export default function App() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <Reveal delay={0.1}>
-              <div className="card p-8 bg-white border-t-8 border-blue-600 h-full">
-                <h3 className="text-2xl font-black italic mb-6 flex items-center gap-3">
-                  <IdCard className="text-blue-600" /> Trámites Personales
+              <div className="card p-8 bg-white border-t-8 border-blue-600 h-full group">
+                <h3 className="text-2xl font-black italic mb-6 flex items-center gap-3 group-hover:text-blue-600 transition-colors">
+                  <IdCard className="text-blue-600 group-hover:scale-110 transition-transform" /> Trámites Personales
                 </h3>
                 <ul className="space-y-6">
                   <li className="flex gap-4">
@@ -438,7 +463,7 @@ export default function App() {
                       <div className="w-3 h-3 bg-blue-600 rounded-sm" />
                     </div>
                     <p className="text-base font-bold text-text-secondary leading-tight">
-                      Mantener y cuidar la Cédula de Identidad (debe estar vigente para junio 2026).
+                      Mantener y cuidar la Cédula de Identidad (debe estar vigente para <span className="text-blue-600">junio 2026</span>).
                     </p>
                   </li>
                   <li className="flex gap-4">
@@ -446,22 +471,22 @@ export default function App() {
                       <div className="w-3 h-3 bg-blue-600 rounded-sm" />
                     </div>
                     <p className="text-base font-bold text-text-secondary leading-tight">
-                      Crear un correo electrónico personal definitivo (con clave recordable, listo para junio).
+                      Crear un correo electrónico personal definitivo (con clave recordable, listo para <span className="text-blue-600">junio</span>).
                     </p>
                   </li>
                 </ul>
               </div>
             </Reveal>
             <Reveal delay={0.2}>
-              <div className="card p-8 bg-white border-t-8 border-teal-500 h-full">
-                <h3 className="text-2xl font-black italic mb-6 flex items-center gap-3">
-                  <Users className="text-teal-500" /> Gestión Familiar (El RSH)
+              <div className="card p-8 bg-white border-t-8 border-teal-500 h-full group">
+                <h3 className="text-2xl font-black italic mb-6 flex items-center gap-3 group-hover:text-teal-500 transition-colors">
+                  <Users className="text-teal-500 group-hover:scale-110 transition-transform" /> Gestión Familiar (El RSH)
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "Verificar que el Registro Social de Hogares (RSH) esté actualizado y vigente (antes de septiembre 2026).",
-                    "Recopilar datos exactos del grupo familiar residente (RUT, Nombre, Estado Civil, Parentesco, Actividad, Nivel de Estudio) para octubre.",
-                    "Conseguir el promedio mensual de los ingresos del grupo familiar (años 2025 y 2026)."
+                    <>Verificar que el Registro Social de Hogares (RSH) esté <b>actualizado y vigente</b> (antes de <span className="text-teal-600">septiembre 2026</span>).</>,
+                    <>Recopilar datos exactos del grupo familiar residente (RUT, Nombre, Parentesco) para <span className="text-teal-600">octubre</span>.</>,
+                    <>Conseguir el promedio mensual de los ingresos del grupo familiar (años <b>2025 y 2026</b>).</>
                   ].map((text, i) => (
                     <li key={i} className="flex gap-4">
                       <div className="w-6 h-6 rounded border-2 border-teal-500 flex items-center justify-center shrink-0 mt-1">
@@ -489,15 +514,15 @@ export default function App() {
           </Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
             <Reveal delay={0.1}>
-              <div className="card p-8 bg-white border-t-8 border-amber-500 h-full">
-                <h3 className="text-2xl font-black italic mb-6 flex items-center gap-3">
-                  <GraduationCap className="text-amber-500" /> Académico
+              <div className="card p-8 bg-white border-t-8 border-amber-500 h-full group">
+                <h3 className="text-2xl font-black italic mb-6 flex items-center gap-3 group-hover:text-amber-500 transition-colors">
+                  <GraduationCap className="text-amber-500 group-hover:scale-110 transition-transform" /> Académico
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "Mantener un promedio de notas alto en 4° medio (cada décima cuenta para tu Ranking).",
-                    "Asegurar una asistencia a clases superior al 85% (requisito de promoción escolar).",
-                    "Participar activamente en todos los talleres y jornadas PACE programadas."
+                    <>Mantener un promedio de notas alto en <b>4° medio</b> (cada décima cuenta para tu Ranking).</>,
+                    <>Asegurar una asistencia a clases superior al <span className="text-amber-600">85%</span> (requisito de promoción escolar).</>,
+                    <>Participar activamente en todos los <b>talleres y jornadas PACE</b> programadas.</>
                   ].map((text, i) => (
                     <li key={i} className="flex gap-4">
                       <div className="w-6 h-6 rounded border-2 border-amber-500 flex items-center justify-center shrink-0 mt-1">
@@ -510,15 +535,15 @@ export default function App() {
               </div>
             </Reveal>
             <Reveal delay={0.2}>
-              <div className="card p-8 bg-white border-t-8 border-red-500 h-full">
-                <h3 className="text-2xl font-black italic mb-6 flex items-center gap-3">
-                  <Target className="text-red-500" /> Desafío PAES
+              <div className="card p-8 bg-white border-t-8 border-red-500 h-full group">
+                <h3 className="text-2xl font-black italic mb-6 flex items-center gap-3 group-hover:text-red-500 transition-colors">
+                  <Target className="text-red-500 group-hover:scale-110 transition-transform" /> Desafío PAES
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "Inscribir la PAES Regular en el portal DEMRE (junio - agosto 2026).",
-                    "Rendir las pruebas obligatorias (Lectora, M1) y al menos una electiva (Ciencias o Historia).",
-                    "Descargar y guardar la Tarjeta de Identificación PAES (noviembre 2026)."
+                    <>Inscribir la PAES Regular en el portal DEMRE (<span className="text-red-600">junio - agosto 2026</span>).</>,
+                    <>Rendir las pruebas <b>obligatorias</b> (Lectora, M1) y al menos una <b>electiva</b>.</>,
+                    <>Descargar y guardar la Tarjeta de Identificación PAES (<span className="text-red-600">noviembre 2026</span>).</>
                   ].map((text, i) => (
                     <li key={i} className="flex gap-4">
                       <div className="w-6 h-6 rounded border-2 border-red-500 flex items-center justify-center shrink-0 mt-1">
@@ -577,7 +602,7 @@ export default function App() {
       content: (
         <div className="max-w-4xl mx-auto text-center">
           <Reveal>
-            <div className="w-24 h-24 bg-blue-600 text-white rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl rotate-3">
+            <div className="w-24 h-24 bg-blue-600 text-white rounded-3xl flex items-center justify-center mx-auto mb-8 shadow-2xl rotate-3 animate-shake">
               <Rocket size={48} />
             </div>
             <h2 className="font-display text-[clamp(2rem,6vw,4.5rem)] font-black mb-6 italic leading-tight">
@@ -643,6 +668,35 @@ export default function App() {
   return (
     <div className="relative w-screen h-screen bg-[#f0f7ff] text-[#102033] overflow-hidden font-body">
       <Background />
+
+      {/* Progress Bar */}
+      <div className="fixed top-0 left-0 w-full h-1.5 bg-black/5 z-[60]">
+        <motion.div 
+          className="h-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.5)]"
+          initial={{ width: 0 }}
+          animate={{ width: `${((currentSlide + 1) / slides.length) * 100}%` }}
+          transition={{ duration: 0.3 }}
+        />
+      </div>
+
+      {/* Navigation Dots */}
+      <div className="fixed right-4 md:right-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-3">
+        {slides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentSlide(i)}
+            className={`w-2 h-2 md:w-2.5 md:h-2.5 rounded-full transition-all duration-300 ${
+              currentSlide === i 
+                ? "bg-blue-600 scale-150 shadow-[0_0_8px_rgba(37,99,235,0.4)]" 
+                : "bg-black/10 hover:bg-black/30"
+            }`}
+            aria-label={`Ir a diapositiva ${i + 1}`}
+          />
+        ))}
+        <div className="mt-2 text-[10px] font-black text-blue-600/40 text-center uppercase tracking-tighter vertical-text hidden md:block">
+          {currentSlide + 1} / {slides.length}
+        </div>
+      </div>
       
       <main className="relative z-10 w-full h-full overflow-y-auto overflow-x-hidden p-4 md:p-12">
         <div className="min-h-full w-full flex items-center justify-center py-20 md:py-0">
@@ -679,12 +733,82 @@ export default function App() {
       </button>
 
       {/* Branding / Logo Placeholder */}
-      <div className="fixed top-8 left-8 z-50 flex items-center gap-3">
-        <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-600/20">
-          <GraduationCap size={24} />
+      <div className="fixed top-6 left-6 md:top-8 md:left-8 z-50 flex items-center gap-4">
+        <button 
+          onClick={() => setIsMenuOpen(true)}
+          className="w-12 h-12 bg-black text-white rounded-2xl flex items-center justify-center shadow-2xl hover:bg-blue-600 transition-all active:scale-95 animate-float-subtle group"
+          aria-label="Abrir menú"
+        >
+          <Menu size={24} className="group-hover:rotate-90 transition-transform" />
+        </button>
+        <div className="hidden sm:block p-2 px-4 bg-black rounded-2xl shadow-2xl">
+          <Logo />
         </div>
-        <span className="font-display font-extrabold text-xl tracking-tight hidden sm:block">PACE 2026</span>
       </div>
+
+      {/* Quick Access Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsMenuOpen(false)}
+              className="fixed inset-0 bg-black/40 backdrop-blur-md z-[100]"
+            />
+            <motion.div 
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 left-0 h-full w-full max-w-sm bg-white shadow-2xl z-[101] p-8 overflow-y-auto"
+            >
+              <div className="flex items-center justify-between mb-12">
+                <div className="p-3 bg-black rounded-2xl">
+                  <Logo />
+                </div>
+                <button 
+                  onClick={() => setIsMenuOpen(false)}
+                  className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+
+              <nav className="space-y-2">
+                {menuItems.map((item, i) => (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      setCurrentSlide(i);
+                      setIsMenuOpen(false);
+                    }}
+                    className={`w-full text-left p-4 rounded-2xl font-bold italic transition-all flex items-center justify-between group ${
+                      currentSlide === i 
+                        ? "bg-blue-600 text-white shadow-lg shadow-blue-600/20" 
+                        : "hover:bg-blue-50 text-text-secondary"
+                    }`}
+                  >
+                    <span className="flex items-center gap-4">
+                      <span className={`text-xs opacity-50 ${currentSlide === i ? "text-white" : "text-blue-600"}`}>
+                        {(i + 1).toString().padStart(2, '0')}
+                      </span>
+                      {item}
+                    </span>
+                    <ChevronRight size={18} className={`transition-transform group-hover:translate-x-1 ${currentSlide === i ? "opacity-100" : "opacity-0"}`} />
+                  </button>
+                ))}
+              </nav>
+
+              <div className="mt-12 p-6 bg-gray-50 rounded-2xl border border-gray-100">
+                <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest mb-2">Contacto Rápido</p>
+                <p className="text-sm font-bold text-text-secondary">pace@uda.cl</p>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
 
       {/* Creator Footer */}
       <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 text-right">
